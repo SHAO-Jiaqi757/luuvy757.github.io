@@ -3,11 +3,11 @@
   <title>Jiaqi&#39;s Blog</title>
   
   
-  <link href="https://github.com/luuvy757/atom.xml" rel="self"/>
+  <link href="https://luuvy757.github.io/blog/atom.xml" rel="self"/>
   
-  <link href="https://github.com/luuvy757/"/>
+  <link href="https://luuvy757.github.io/blog/"/>
   <updated>2022-01-21T05:11:09.330Z</updated>
-  <id>https://github.com/luuvy757/</id>
+  <id>https://luuvy757.github.io/blog/</id>
   
   <author>
     <name>Jiaqi Shao</name>
@@ -18,15 +18,15 @@
   
   <entry>
     <title>FL using Flower on device</title>
-    <link href="https://github.com/luuvy757/2022/01/21/FL-using-Flower-on-device/"/>
-    <id>https://github.com/luuvy757/2022/01/21/FL-using-Flower-on-device/</id>
+    <link href="https://luuvy757.github.io/blog/2022/01/21/FL-using-Flower-on-device/"/>
+    <id>https://luuvy757.github.io/blog/2022/01/21/FL-using-Flower-on-device/</id>
     <published>2022-01-21T04:59:06.000Z</published>
     <updated>2022-01-21T05:11:09.330Z</updated>
     
     
     
     
-    <category term="FL" scheme="https://github.com/luuvy757/categories/FL/"/>
+    <category term="FL" scheme="https://luuvy757.github.io/blog/categories/FL/"/>
     
     
   </entry>
