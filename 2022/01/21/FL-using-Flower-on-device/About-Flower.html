@@ -1,0 +1,95 @@
+<hr>
+<p>title: About Flower<br>date: 2022-01-23 09:27:13<br>hidden: true</p>
+<hr>
+<p><a href="https://flower.dev/">Website</a><br><a href="https://www.youtube.com/watch?v=PpDFV4sPxuk">Youtube Channel</a></p>
+<h2 id="ML-amp-IoT"><a href="#ML-amp-IoT" class="headerlink" title="ML &amp; IoT"></a>ML &amp; IoT</h2><ul>
+<li>Data collected on the device.</li>
+<li>Upload data to <strong>cloud</strong> to train model.</li>
+<li><strong>Not</strong> a ideal situation.</li>
+<li><strong>Machine Learning Server Stack</strong>:<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Network</td>
+<td>LAN</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>Linux</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td>CPU, GPU, TPU</td>
+</tr>
+<tr>
+<td>Framework</td>
+<td>TensorFlow, PyTorch, JAX, MXNet</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>gRPC</td>
+</tr>
+<tr>
+<td>Locality</td>
+<td>single-region</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>HID</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="FL-primer"><a href="#FL-primer" class="headerlink" title="FL primer"></a>FL primer</h2><ul>
+<li>Local model with local data.</li>
+<li>Send machine learning model to cloud.</li>
+<li>Aggregate to obtain Global model.</li>
+</ul>
+<h2 id="Challenge-Heterogeneity"><a href="#Challenge-Heterogeneity" class="headerlink" title="Challenge Heterogeneity"></a>Challenge Heterogeneity</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Network</td>
+<td>LAN, WAN, WiFi, LoRaWan, 2/3/4/5/6G, BT, BT-LE, ..</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>Linux, macOS, Windows, iOS, Android, embedded</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td>CPU, GPU, TPU, edge-TPU, Neural Engine, …</td>
+</tr>
+<tr>
+<td>Framework</td>
+<td>TensorFlow, PyTorch, JAX, MXNet, libtorch, TF Lite, ..</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>gRPC, REST, MQTT, sockets, WebSockets,..</td>
+</tr>
+<tr>
+<td>Locality</td>
+<td>single-region, multi-region, global</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>IID, non-IID</td>
+</tr>
+</tbody></table>
+<h2 id="Flower-A-friendly-FL-framework"><a href="#Flower-A-friendly-FL-framework" class="headerlink" title="Flower: A friendly FL framework"></a>Flower: A friendly FL framework</h2><p><img src="/img/flwr-framework.png"></p>
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><ul>
+<li>Different communication protocal</li>
+<li>Different clients.<br><img src="/img/flwr-architecture.png"></li>
+</ul>
+<h3 id="Example-Mobile"><a href="#Example-Mobile" class="headerlink" title="Example: Mobile"></a>Example: Mobile</h3><p><img src="/img/flwr-mobile.png"></p>
+<h3 id="Example-IoT"><a href="#Example-IoT" class="headerlink" title="Example: IoT"></a>Example: IoT</h3><p><img src="/img/flwr-IoT.png"></p>
+<h3 id="Example-HPC"><a href="#Example-HPC" class="headerlink" title="Example: HPC"></a>Example: HPC</h3><p><img src="/img/flwr-HPC.png"></p>
