@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>FL using Flower on device | Jiaqi's Blog</title><meta name="author" content="Jiaqi Shao"><meta name="copyright" content="Jiaqi Shao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="About FlowerFlower + Android   Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions   TF Model Personal">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>FL using Flower on device | Jiaqi's Blog</title><meta name="author" content="Jiaqi Shao"><meta name="copyright" content="Jiaqi Shao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="About FlowerFlower + Android   Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions  tflite_convertor&#x2F;c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FL using Flower on device">
 <meta property="og:url" content="https://luuvy757.github.io/2022/01/21/FL-using-Flower-on-device/index.html">
 <meta property="og:site_name" content="Jiaqi&#39;s Blog">
-<meta property="og:description" content="About FlowerFlower + Android   Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions   TF Model Personal">
+<meta property="og:description" content="About FlowerFlower + Android   Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions  tflite_convertor&#x2F;c">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://luuvy757.github.io/img/flower.gif">
 <meta property="article:published_time" content="2022-01-21T04:59:06.000Z">
-<meta property="article:modified_time" content="2022-01-23T03:18:32.276Z">
+<meta property="article:modified_time" content="2022-02-09T03:48:05.160Z">
 <meta property="article:author" content="Jiaqi Shao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://luuvy757.github.io/img/flower.gif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://luuvy757.github.io/2022/01/21/FL-using-Flower-on-device/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
@@ -52,7 +52,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-01-23 11:18:32'
+  postUpdate: '2022-02-09 11:48:05'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,15 +142,14 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Jiaqi's Blog" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/flower.gif')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jiaqi's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">FL using Flower on device</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-23T03:18:32.276Z" title="Updated 2022-01-23 11:18:32">2022-01-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/FL/">FL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="FL using Flower on device"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id=""><a href="#" class="headerlink" title=""></a><a href="/2022/01/23/FL-using-Flower-on-device/About-Flower/" title="About Flower">About Flower</a></h2><h2 id="Flower-Android"><a href="#Flower-Android" class="headerlink" title="Flower + Android"></a>Flower + Android</h2><img src="/2022/01/21/FL-using-Flower-on-device/flwr-android.png" class="" title="Overview">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/flower.gif')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jiaqi's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">FL using Flower on device</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-02-09T03:48:05.160Z" title="Updated 2022-02-09 11:48:05">2022-02-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/FL/">FL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="FL using Flower on device"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id=""><a href="#" class="headerlink" title=""></a><a href="/2022/01/23/FL-using-Flower-on-device/About-Flower/" title="About Flower">About Flower</a></h2><h2 id="Flower-Android"><a href="#Flower-Android" class="headerlink" title="Flower + Android"></a>Flower + Android</h2><img src="/2022/01/21/FL-using-Flower-on-device/flwr-android.png" class="" title="Overview">
 
 
 <h3 id="Run-Federated-Learning-on-Android-Devices-TF-Lite-Flower"><a href="#Run-Federated-Learning-on-Android-Devices-TF-Lite-Flower" class="headerlink" title="Run Federated Learning on Android Devices (TF Lite + Flower)"></a>Run Federated Learning on Android Devices (TF Lite + Flower)</h3><p><a target="_blank" rel="noopener" href="https://flower.dev/blog/2021-12-15-federated-learning-on-android-devices-with-flower">Tutorial blog</a><br><a target="_blank" rel="noopener" href="https://github.com/adap/flower/tree/main/examples/android">Github: Flower Android Example (TensorFlowLite)</a></p>
 <ol>
-<li>Setup the model definitions</li>
-</ol>
+<li><p><strong>Setup the model definitions</strong></p>
 <blockquote>
-<p><a href="#FL-Model-Personalization">TF Model Personalization</a> requires defining two architectures:</p>
+<p>tflite_convertor/convert_to_tflite.py<br><a href="#FL-Model-Personalization">TF Model Personalization</a> requires defining two architectures:</p>
 </blockquote>
 <table>
 <thead>
@@ -160,16 +159,37 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Base Model</td>
+<td><strong>Base Model</strong></td>
 <td>A pre-trained feature extractor (e.g., ResNet50 trained on ImageNet) which is not updated during on-device training.</td>
 </tr>
 <tr>
-<td>Head Model</td>
+<td><strong>Head Model</strong></td>
 <td>Like a task-specific classifer which is randomly initialized and trained on the local data.</td>
 </tr>
 </tbody></table>
+<p> Both Models can be configured in <strong>tflite_convertor/convert_to_tflite.py</strong>, and converted into “tflite_model”</p>
+</li>
+</ol>
 <ol start="2">
-<li><p>Android Client<br>a. Initial Setup<br>b. GRPC Compilation</p>
+<li><p><strong>Android Client</strong> </p>
+<blockquote>
+<p><code>client</code> folder  </p>
+</blockquote>
+<ul>
+<li><p><strong>Modifying App’s Interface and Functionalities</strong><br>flwr/android_client/MainActivity.java<br><code>loadData</code>, <code>connect</code>, <code>runGRCP</code></p>
+</li>
+<li><p><strong>Modifying Flower Client</strong><br>flwr/android_client/FlowerClient.java<br><strong>LoadData</strong> (Also, checking: src/main/assets/data,<br>  flwr/android_client/TransferLearningModelWrapper.java)<br><strong>Loss Callback</strong>          </p>
+</li>
+<li><p><strong>Add tflite_model</strong><br>src/main/assets/model<br>build.gradle(Module: client.app)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Server</strong></p>
+<blockquote>
+<p>server.py</p>
+</blockquote>
+<p>Usage: <code>Strategy</code> configuration</p>
+<p>More about Strategy: <a target="_blank" rel="noopener" href="https://flower.dev/docs/strategies.html">https://flower.dev/docs/strategies.html</a></p>
 </li>
 <li><p>Log</p>
 <ul>
