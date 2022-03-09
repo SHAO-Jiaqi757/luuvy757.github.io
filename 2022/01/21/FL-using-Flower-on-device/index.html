@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>FL using Flower on device | Jiaqi's Blog</title><meta name="author" content="Jiaqi Shao"><meta name="copyright" content="Jiaqi Shao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="About FlowerFlower + Android   Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions  tflite_convertor&#x2F;c">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>FL using Flower on device | Jiaqi's Blog</title><meta name="author" content="Jiaqi Shao"><meta name="copyright" content="Jiaqi Shao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="About FlowerFlower + Android Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions  tflite_convertor&#x2F;con">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FL using Flower on device">
 <meta property="og:url" content="https://luuvy757.github.io/2022/01/21/FL-using-Flower-on-device/index.html">
 <meta property="og:site_name" content="Jiaqi&#39;s Blog">
-<meta property="og:description" content="About FlowerFlower + Android   Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions  tflite_convertor&#x2F;c">
+<meta property="og:description" content="About FlowerFlower + Android Run Federated Learning on Android Devices (TF Lite + Flower)Tutorial blogGithub: Flower Android Example (TensorFlowLite)  Setup the model definitions  tflite_convertor&#x2F;con">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://luuvy757.github.io/img/flower.gif">
 <meta property="article:published_time" content="2022-01-21T04:59:06.000Z">
@@ -141,43 +141,29 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Jiaqi's Blog" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/flower.gif')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jiaqi's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">FL using Flower on device</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-02-09T03:48:05.160Z" title="Updated 2022-02-09 11:48:05">2022-02-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/FL/">FL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="FL using Flower on device"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id=""><a href="#" class="headerlink" title=""></a><a href="/2022/01/23/FL-using-Flower-on-device/About-Flower/" title="About Flower">About Flower</a></h2><h2 id="Flower-Android"><a href="#Flower-Android" class="headerlink" title="Flower + Android"></a>Flower + Android</h2><img src="/2022/01/21/FL-using-Flower-on-device/flwr-android.png" class="" title="Overview">
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Jiaqi's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/flower.gif')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jiaqi's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">FL using Flower on device</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-02-09T03:48:05.160Z" title="Updated 2022-02-09 11:48:05">2022-02-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/FL/">FL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="FL using Flower on device"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id=""><a href="#" class="headerlink" title=""></a><a href="/2022/01/23/FL-using-Flower-on-device/About-Flower/" title="About Flower">About Flower</a></h2><h2 id="Flower-Android"><a href="#Flower-Android" class="headerlink" title="Flower + Android"></a>Flower + Android</h2><img src="/2022/01/21/FL-using-Flower-on-device/flwr-android.png" class="" title="Overview">
 <h3 id="Run-Federated-Learning-on-Android-Devices-TF-Lite-Flower"><a href="#Run-Federated-Learning-on-Android-Devices-TF-Lite-Flower" class="headerlink" title="Run Federated Learning on Android Devices (TF Lite + Flower)"></a>Run Federated Learning on Android Devices (TF Lite + Flower)</h3><p><a target="_blank" rel="noopener" href="https://flower.dev/blog/2021-12-15-federated-learning-on-android-devices-with-flower">Tutorial blog</a><br><a target="_blank" rel="noopener" href="https://github.com/adap/flower/tree/main/examples/android">Github: Flower Android Example (TensorFlowLite)</a></p>
 <ol>
 <li><p><strong>Setup the model definitions</strong></p>
 <blockquote>
 <p>tflite_convertor/convert_to_tflite.py<br><a href="#FL-Model-Personalization">TF Model Personalization</a> requires defining two architectures:</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Base Model</strong></td>
-<td>A pre-trained feature extractor (e.g., ResNet50 trained on ImageNet) which is not updated during on-device training.</td>
-</tr>
-<tr>
-<td><strong>Head Model</strong></td>
-<td>Like a task-specific classifer which is randomly initialized and trained on the local data.</td>
-</tr>
-</tbody></table>
+<p> |  |  |<br> | —————- | —————- |<br> | <strong>Base Model</strong> | A pre-trained feature extractor (e.g., ResNet50 trained on ImageNet) which is not updated during on-device training. |<br> | <strong>Head Model</strong> | Like a task-specific classifer which is randomly initialized and trained on the local data. |</p>
 <p> Both Models can be configured in <strong>tflite_convertor/convert_to_tflite.py</strong>, and converted into “tflite_model”</p>
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li><p><strong>Android Client</strong> </p>
 <blockquote>
 <p><code>client</code> folder  </p>
 </blockquote>
 <ul>
-<li><p><strong>Modifying App’s Interface and Functionalities</strong><br>flwr/android_client/MainActivity.java<br><code>loadData</code>, <code>connect</code>, <code>runGRCP</code></p>
-</li>
+<li><strong>Modifying App’s Interface and Functionalities</strong><br>flwr/android_client/MainActivity.java<br><code>loadData</code>, <code>connect</code>, <code>runGRCP</code></li>
 <li><p><strong>Modifying Flower Client</strong><br>flwr/android_client/FlowerClient.java<br><strong>LoadData</strong> (Also, checking: src/main/assets/data,<br>  flwr/android_client/TransferLearningModelWrapper.java)<br><strong>Loss Callback</strong>          </p>
 </li>
 <li><p><strong>Add tflite_model</strong><br>src/main/assets/model<br>build.gradle(Module: client.app)</p>
@@ -194,38 +180,34 @@
 <li><p>Log</p>
 <ul>
 <li><p>Server Log</p>
-<img src="/2022/01/21/FL-using-Flower-on-device/demo-server-log.png" class=""></li>
+<img src="/2022/01/21/FL-using-Flower-on-device/demo-server-log.png" class="">
+</li>
 <li><p>Client Log (Two devices: Huawei Honor (Android 9) and Huawei M6 (Android 10))</p>
-<img src="/2022/01/21/FL-using-Flower-on-device/demo-device-log.jpg" class=""></li>
+<img src="/2022/01/21/FL-using-Flower-on-device/demo-device-log.jpg" class="">
+</li>
 </ul>
 </li>
 </ol>
 <h2 id="Flower-Embedded"><a href="#Flower-Embedded" class="headerlink" title="Flower + Embedded"></a>Flower + Embedded</h2><img src="/2022/01/21/FL-using-Flower-on-device/flwr-embedded.png" class="" title="Overview">
-
-
 <hr>
 <h2 id="FL-Model-Personalization"><a href="#FL-Model-Personalization" class="headerlink" title="FL Model Personalization"></a>FL Model Personalization</h2><p><a target="_blank" rel="noopener" href="https://github.com/tensorflow/examples/tree/master/lite/examples/model_personalization">TensorFlow Lite Example On-device Model Personalization
 </a></p>
 <h3 id="Prepare-the-TfLite-model"><a href="#Prepare-the-TfLite-model" class="headerlink" title="Prepare the TfLite model"></a>Prepare the TfLite model</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/model_personalization</span><br><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── android</span><br><span class="line">├── app_screenshot.png</span><br><span class="line">└── transfer_learning</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># under /transfer_learning </span></span><br><span class="line"><span class="comment"># Generate the model flatbuffer file `model.tflite`</span></span><br><span class="line">python generate_training_model.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># under /model_personalization</span></span><br><span class="line"><span class="comment"># Copy over the flatbuffer file to the `android` assets directory.</span></span><br><span class="line">cp transfer_learning/model.tflite android/app/src/main/assets/model/model.tflite</span><br></pre></td></tr></table></figure>
-
-
 <h3 id="Install-and-run-the-application-on-Device"><a href="#Install-and-run-the-application-on-Device" class="headerlink" title="Install and run the application on Device"></a>Install and run the application on Device</h3><ol>
-<li>Open Android Studio and import the project (the <code>/android</code> folder)</li>
+<li><p>Open Android Studio and import the project (the <code>/android</code> folder)</p>
+<img src="/2022/01/21/FL-using-Flower-on-device/android-studio-import-demo.png" class="">
+</li>
+<li><p>Connect with device and run the code. </p>
+<img src="/2022/01/21/FL-using-Flower-on-device/device-connection.png" class="">
+</li>
 </ol>
-  <img src="/2022/01/21/FL-using-Flower-on-device/android-studio-import-demo.png" class="">
-<ol start="2">
-<li>Connect with device and run the code. </li>
-</ol>
-  <img src="/2022/01/21/FL-using-Flower-on-device/device-connection.png" class="">
-
-
 <h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><ol>
 <li><p><code>$ python server.py</code> Error: No attribute FedAvgAndroid</p>
 <blockquote>
 <p>Install the latest version of the flower from the github:</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git+https://github.com/adap/flower.git</span><br></pre></td></tr></table></figure></blockquote>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git+https://github.com/adap/flower.git</span><br></pre></td></tr></table></figure>
+</blockquote>
 </li>
 <li><p>Failed install app: app cannot be installed for “unpublished vision”</p>
 <blockquote>
@@ -238,4 +220,49 @@
 </blockquote>
 </li>
 </ol>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Jiaqi Shao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://luuvy757.github.io/2022/01/21/FL-using-Flower-on-device/">https://luuvy757.github.io/2022/01/21/FL-using-Flower-on-device/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/flower.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiaqi Shao</div><div class="author-info__description">description</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/luuvy757"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">About Flower</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flower-Android"><span class="toc-number">2.</span> <span class="toc-text">Flower + Android</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-Federated-Learning-on-Android-Devices-TF-Lite-Flower"><span class="toc-number">2.1.</span> <span class="toc-text">Run Federated Learning on Android Devices (TF Lite + Flower)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flower-Embedded"><span class="toc-number">3.</span> <span class="toc-text">Flower + Embedded</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FL-Model-Personalization"><span class="toc-number">4.</span> <span class="toc-text">FL Model Personalization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prepare-the-TfLite-model"><span class="toc-number">4.1.</span> <span class="toc-text">Prepare the TfLite model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-and-run-the-application-on-Device"><span class="toc-number">4.2.</span> <span class="toc-text">Install and run the application on Device</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Troubleshooting"><span class="toc-number">4.3.</span> <span class="toc-text">Troubleshooting</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device"><img src="/img/flower.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="FL using Flower on device"/></a><div class="content"><a class="title" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device">FL using Flower on device</a><time datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Jiaqi Shao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"right","hOffset":30,"vOffset":-20},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Jiaqi Shao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://luuvy757.github.io/2022/01/21/FL-using-Flower-on-device/">https://luuvy757.github.io/2022/01/21/FL-using-Flower-on-device/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/flower.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/03/09/FL-Algorithms/"><img class="prev-cover" src="/img/cover1.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">FL Algorithms</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiaqi Shao</div><div class="author-info__description">description</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/luuvy757"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">About Flower</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flower-Android"><span class="toc-number">2.</span> <span class="toc-text">Flower + Android</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-Federated-Learning-on-Android-Devices-TF-Lite-Flower"><span class="toc-number">2.1.</span> <span class="toc-text">Run Federated Learning on Android Devices (TF Lite + Flower)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flower-Embedded"><span class="toc-number">3.</span> <span class="toc-text">Flower + Embedded</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FL-Model-Personalization"><span class="toc-number">4.</span> <span class="toc-text">FL Model Personalization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prepare-the-TfLite-model"><span class="toc-number">4.1.</span> <span class="toc-text">Prepare the TfLite model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-and-run-the-application-on-Device"><span class="toc-number">4.2.</span> <span class="toc-text">Install and run the application on Device</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Troubleshooting"><span class="toc-number">4.3.</span> <span class="toc-text">Troubleshooting</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/09/FL-Algorithms/" title="FL Algorithms"><img src="/img/cover1.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="FL Algorithms"/></a><div class="content"><a class="title" href="/2022/03/09/FL-Algorithms/" title="FL Algorithms">FL Algorithms</a><time datetime="2022-03-09T14:03:03.000Z" title="Created 2022-03-09 22:03:03">2022-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device"><img src="/img/flower.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="FL using Flower on device"/></a><div class="content"><a class="title" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device">FL using Flower on device</a><time datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Jiaqi Shao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"right","hOffset":30,"vOffset":-20},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
