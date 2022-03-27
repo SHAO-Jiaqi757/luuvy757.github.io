@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CSC3150 Operating System | Jiaqi's Blog</title><meta name="author" content="Jiaqi Shao"><meta name="copyright" content="Jiaqi Shao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Project 1: User Thread and Kernel Threadhttps:&#x2F;&#x2F;github.com&#x2F;luuvy757&#x2F;CSC3150_As1-Kernel-Mode-Multi-Process-Programming Overview In computing, a loadable kernel module (LKM) is an object file that conta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSC3150 Operating System">
+<meta property="og:url" content="https://luuvy757.github.io/2022/03/25/CSC3150-Operating-System/index.html">
+<meta property="og:site_name" content="Jiaqi&#39;s Blog">
+<meta property="og:description" content="Project 1: User Thread and Kernel Threadhttps:&#x2F;&#x2F;github.com&#x2F;luuvy757&#x2F;CSC3150_As1-Kernel-Mode-Multi-Process-Programming Overview In computing, a loadable kernel module (LKM) is an object file that conta">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luuvy757.github.io/img/covers/2022210231764265f3565f96825f159733503321.png">
+<meta property="article:published_time" content="2022-03-24T16:24:13.000Z">
+<meta property="article:modified_time" content="2022-03-27T08:20:51.749Z">
+<meta property="article:author" content="Jiaqi Shao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luuvy757.github.io/img/covers/2022210231764265f3565f96825f159733503321.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://luuvy757.github.io/2022/03/25/CSC3150-Operating-System/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSC3150 Operating System',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-27 16:20:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Jiaqi's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/covers/2022210231764265f3565f96825f159733503321.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jiaqi's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CSC3150 Operating System</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-24T16:24:13.000Z" title="Created 2022-03-25 00:24:13">2022-03-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-27T08:20:51.749Z" title="Updated 2022-03-27 16:20:51">2022-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/course/">course</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CSC3150 Operating System"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Project-1-User-Thread-and-Kernel-Thread"><a href="#Project-1-User-Thread-and-Kernel-Thread" class="headerlink" title="Project 1: User Thread and Kernel Thread"></a>Project 1: User Thread and Kernel Thread</h1><p><a target="_blank" rel="noopener" href="https://github.com/luuvy757/CSC3150_As1-Kernel-Mode-Multi-Process-Programming">https://github.com/luuvy757/CSC3150_As1-Kernel-Mode-Multi-Process-Programming</a></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
+<p>In computing, a loadable kernel module (LKM) is an object file that contains code to extend the running kernel, or so-called base kernel, of an operating system. LKMs are typically used to <strong>add support for new hardware (as device drivers) and/or filesystems, or for adding system calls</strong>. When the functionality provided by an LKM is no longer required, it can be unloaded in order to free memory and other resources.</p>
+</blockquote>
+<h2 id="Task-1-user-mode"><a href="#Task-1-user-mode" class="headerlink" title="Task 1: user mode"></a>Task 1: user mode</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/2022/03/25/CSC3150-Operating-System/user_mode.jpg" class=""></td>
+<td><img src="/2022/03/25/CSC3150-Operating-System/signals.jpg" class=""></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="In-user-mode-fork-a-child-process-to-execute-the-test-program"><a href="#In-user-mode-fork-a-child-process-to-execute-the-test-program" class="headerlink" title="In user mode, fork a child process to execute the test program."></a>In user mode, fork a child process to execute the test program.</h3><p><code>pid = fork()</code>: <code>pid = -1 (failed); pid = 0 (child process); pid &gt; 0 (parent pid)</code><br><code>getpid()</code>: get process id.</p>
+<h3 id="Detect-exception-cases-generated-by-test-programs"><a href="#Detect-exception-cases-generated-by-test-programs" class="headerlink" title="Detect exception cases generated by test programs"></a>Detect exception cases generated by test programs</h3><p><code>waitpid(pid, &amp;status, WUNTRACED);</code><br><code>status</code> is the identifier.</p>
+<h2 id="Task-2-kernel-mode"><a href="#Task-2-kernel-mode" class="headerlink" title="Task 2: kernel mode"></a>Task 2: kernel mode</h2><img src="/2022/03/25/CSC3150-Operating-System/kernel_mode.jpg" class="">
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">my_exec</span><span class="params">(<span class="keyword">void</span>)</span> ... </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_wait</span><span class="params">(<span class="keyword">pid_t</span> pid)</span> ... </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">my_fork</span><span class="params">(<span class="keyword">void</span> *argc)</span> ...</span></span><br></pre></td></tr></table></figure>
+<h3 id="Create-kernel-module"><a href="#Create-kernel-module" class="headerlink" title="Create kernel module"></a>Create kernel module</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> __init <span class="title">program2_init</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	printk(<span class="string">&quot;[program2] : Module_init\n&quot;</span>);</span><br><span class="line">	<span class="comment">/* write your code here */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">my_kthread</span>;</span></span><br><span class="line">	printk(<span class="string">&quot;[program2] :module_init create kthread start&quot;</span>);</span><br><span class="line">    <span class="comment">/* create a kernel thread to run my_fork */</span></span><br><span class="line">	my_kthread = kthread_create(&amp;my_fork, <span class="literal">NULL</span>, <span class="string">&quot;my_kthread&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!IS_ERR(my_kthread)) &#123;</span><br><span class="line">		printk(<span class="string">&quot;[program2] : module_init kthread start&quot;</span>);</span><br><span class="line">		wake_up_process(my_kthread);</span><br><span class="line">        <span class="comment">// wake_up_process() When the wake_up_process is called the function passed to kthread_create gets executed.</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Firstly, create a kernel thread that forks a process <code>struct task_struct *my_kthread =
+kthread_create(&amp;my_fork, NULL, &quot;my_kthread&quot;);</code>, and start execution<br><code>wake_up_process(my_kthread);</code>.<br>In <code>my_fork()</code>, a child process is created by <code>_do_fork()</code> to execute test programs<br><code>_do_fork(SIGCHLD, (unsigned long) &amp;my_exec, 0, NULL, NULL, 0);</code> . Besides,<br>use <code>do_wait(&amp;wo)</code> to receive signal from the child process. After reveiving the signal, print out<br>the signal messages and child process terminated information. In <code>my_exec()</code>, use do_execve to<br>execute a file where raises signals.</p>
+<h3 id="Insert-kernel-module-and-remove-kernel-module"><a href="#Insert-kernel-module-and-remove-kernel-module" class="headerlink" title="Insert kernel module and remove kernel module"></a>Insert kernel module and remove kernel module</h3><p><code>inmod &amp; rmmod</code> </p>
+<hr>
+<h1 id="Project-2-Frog-Game-using-pthread"><a href="#Project-2-Frog-Game-using-pthread" class="headerlink" title="Project 2: Frog Game (using pthread)"></a>Project 2: Frog Game (using pthread)</h1><blockquote>
+<p><strong>thread</strong>:<br>A process can have multiple threads. The threads share the resources within a process and they<br>execute within the same address space. The shared resources can be accessed by all the threads, so that the<br>threads can write and read the shared resources. Therefore, it is significant to make explicit synchronization by<br>the programmer.<br><strong>critical section</strong>: The critical section is a code segment where the shared variables can be accessed. An atomic action is required in a critical section i.e. only one process can execute in its critical section at a time. All the other processes have to wait to execute in their critical sections.<br><strong>mutex</strong>: a data structure</p>
+</blockquote>
+<h2 id="Mutex-Lock"><a href="#Mutex-Lock" class="headerlink" title="Mutex Lock"></a>Mutex Lock</h2><ul>
+<li><p><code>print_map()</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_map</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pthread_mutex_lock(&amp;mutex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[H\033[2J&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= ROW; i++)</span><br><span class="line">        <span class="built_in">puts</span>(<span class="built_in">map</span>[i]);</span><br><span class="line">    usleep(<span class="number">1e4</span>);</span><br><span class="line">    pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The shared data map is accessed by the <code>print_map()</code> in the <code>frog_control</code> thread. However, in the<br><code>logs_move()</code> of logs control threads, the shared data map is changed. To avoid the conflicts, the<br>mutex is required to make a critical section in the <code>print_map()</code>.</p>
+</li>
+<li><p><code>frog_control()</code></p>
+<p>  The shared data frog is changed when the player controlling it. However, in the <code>logs_move()</code> of logs<br>  control threads, the frog is changed as it moving along with the log. Thus, to avoid the conflicts, the<br>  mutex is required to make a critical section in the <code>frog_control()</code>.</p>
+</li>
+</ul>
+<hr>
+<h1 id="Project-3-Virtual-Memory-Simulation"><a href="#Project-3-Virtual-Memory-Simulation" class="headerlink" title="Project 3: Virtual Memory Simulation"></a>Project 3: Virtual Memory Simulation</h1><p><a target="_blank" rel="noopener" href="https://github.com/luuvy757/CSC3150-As3-Vitrual-Memory-Simulation">https://github.com/luuvy757/CSC3150-As3-Vitrual-Memory-Simulation</a></p>
+<h2 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h2><p>  The virtual memory is efficient to execute partially-loaded program, so that the program is free of physical memory limited space. The virtual address is generated by the CPU, and after loading, the physical address is bound. The virtual memory space can be divided into pages, and the physical memory space can be divided into frames of the same size. If there is a reference to a page, OS needs to check the page table to find out its physical page number or it is not in memory, where the page fault may occur. The virtual memory management is significant in mapping virtual memory to physical memory, and load data from disk into physical memory only when necessary.<br>  <img src="/2022/03/25/CSC3150-Operating-System/GPU.jpg" class="" title="Figure 1.1"><br>  In this project, we aim to simulate a virtual memory management in GPU, and the Fig.1.1 shows how the memory arrangement in the GPU. Moreover, I used Inverted Page Table(IPT) in this project, and LRU is implemented for swapping out when page faults.<br><img src="/2022/03/25/CSC3150-Operating-System/vm_read.png" class=""></p>
+<h2 id="Transform-Virtual-address-to-Physical-address"><a href="#Transform-Virtual-address-to-Physical-address" class="headerlink" title="Transform Virtual address to Physical address"></a>Transform Virtual address to Physical address</h2><ul>
+<li>In this project, <strong>virtual memory space</strong> and <strong>disk memory space</strong> is one-to-one mapping.</li>
+</ul>
+<ol>
+<li>Given virtual address, we can get page number, and page offset. </li>
+<li>Linearly search Invert Page Table<br>(a) exist =&gt; frame number = current index;<br>(b) not exist =&gt; page fault =&gt; handle page fault =&gt; get frame number</li>
+<li>Physical address = frame number*page_size + page offset</li>
+<li>Don’t forget to update LRU set!<h2 id="Page-Fault-Handling"><a href="#Page-Fault-Handling" class="headerlink" title="Page Fault Handling"></a>Page Fault Handling</h2></li>
+</ol>
+<ul>
+<li>LRU set contains all occupied frames.</li>
+<li>Target: Find frame and put virtual page into physical frame.</li>
+</ul>
+<ol>
+<li>Check if there is a free frame<br>(a) Yes, return free frame.<br>(b) No, LRU =&gt; swap out and return LRU frame </li>
+<li>Swap virtual page into physical frame. (virtual address and disk address is one-to-one mapping)</li>
+</ol>
+<h2 id="Invert-Page-Table"><a href="#Invert-Page-Table" class="headerlink" title="Invert Page Table"></a>Invert Page Table</h2><ul>
+<li>#entries = $\frac{physicalMemorySize (32KB)}{frame Size (32B)} = 2^{10} = 1024$ </li>
+<li><em>frame number-&gt; page number</em> </li>
+<li><strong>Linear search</strong> to find whether page number is already in physical memory.</li>
+<li>Why Linear Search? For Table in the structure of <code>page number -&gt; frame number</code>, we can access index(page number) to check the frame number is valid or not.</li>
+</ul>
+<h2 id="Page-Replacement-LRU"><a href="#Page-Replacement-LRU" class="headerlink" title="Page Replacement (LRU)"></a>Page Replacement (LRU)</h2><ul>
+<li>data structure<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  u16 prev;</span><br><span class="line">  u16 next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LRU</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Node* head;  <span class="comment">//nodes[0] (sentinel)</span></span><br><span class="line">  Node* tail;  <span class="comment">//nodes[1025] (sentinel)</span></span><br><span class="line">  Node* nodes;</span><br><span class="line"></span><br><span class="line">  u16 count = <span class="number">0</span>;  </span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>k = nodes[i].prev: (i-1)th frame’s prev is (k-1)th frame.</li>
+<li>k = nodes[i].next: (i-1)th frame’s next is (k-1)th frame.</li>
+<li>ith frame is free &lt;=&gt; nodes[i+1].prev is <code>null</code></li>
+<li>LRU frame number= <code>LRU-&gt;tail.prev - 1</code></li>
+<li>update LRU: <ul>
+<li>(a) There is a free frame: add this free frame number into LRU (doubly-link-list, add operation at <code>head</code>) </li>
+<li>(b) Physical memory is full: return the LRU frame. -&gt; delete operation &amp; add operation</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*virtual_memory.h*/</span></span><br><span class="line"><span class="function">__device__ <span class="keyword">void</span> <span class="title">update_LRU</span><span class="params">(VirtualMemory* vm, u16 frame_number)</span></span>;</span><br><span class="line"><span class="function">__device__ u16 <span class="title">get_LRU_frame_number</span><span class="params">(VirtualMemory* vm)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*virtual_memory.cu*/</span></span><br><span class="line"><span class="function">__device__ <span class="keyword">void</span> <span class="title">init_LRU</span><span class="params">(VirtualMemory *vm)</span></span>;</span><br><span class="line"><span class="function">__device__ <span class="keyword">void</span> <span class="title">add_to_LRU</span><span class="params">(VirtualMemory *vm, u16 frame_number)</span></span>;</span><br><span class="line"><span class="function">__device__ <span class="keyword">void</span> <span class="title">update_LRU</span><span class="params">(VirtualMemory *vm, u16 frame_number)</span></span>;</span><br><span class="line"><span class="function">__device__ u16 <span class="title">get_LRU_frame_number</span><span class="params">(VirtualMemory *vm)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>init_LRU</code> is used to initialize the LRU–putting the LRU into the virtual memory. \<br><code>add_to_LRU</code> is used to add node in the front of the doubly linked list. \<br><code>update_LRU</code> is used to update the LRU once a frame is accessed. \<br><code>get_LRU_frame_number</code> is used to get the <em>least recently unused</em> <code>frame_number</code>, which will be swapped out later.</p>
+<hr>
+<h1 id="Project-4-File-System-Simulation"><a href="#Project-4-File-System-Simulation" class="headerlink" title="Project 4: File System Simulation"></a>Project 4: File System Simulation</h1><h2 id="Overview-2"><a href="#Overview-2" class="headerlink" title="Overview"></a>Overview</h2><p><a target="_blank" rel="noopener" href="https://github.com/luuvy757/CSC3150-As4-File-System">https://github.com/luuvy757/CSC3150-As4-File-System</a></p>
+<ul>
+<li>Layered File System<img src="/2022/03/25/CSC3150-Operating-System/layered_fs.png" class=""></li>
+<li>Volume Control Block: total # of blocks, # of free blocks… </li>
+<li>File Control Block: file size, time, filename…<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><h3 id="Data-structure"><a href="#Data-structure" class="headerlink" title="Data structure"></a>Data structure</h3></li>
+</ul>
+<ol>
+<li>Super Block<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SuperBlock</span></span></span><br><span class="line"><span class="class"> &#123;</span></span><br><span class="line">     <span class="keyword">int</span> free_block_count; <span class="comment">// how many free block</span></span><br><span class="line">     u16 free_block_start; <span class="comment">// the first start free block number;</span></span><br><span class="line">     <span class="keyword">int</span> total_file = <span class="number">0</span>;   <span class="comment">// how many files in the storge</span></span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>File Control Block  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> pack(1)</span></span><br><span class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">FCB</span></span></span><br><span class="line"><span class="class"> &#123;</span></span><br><span class="line">     u32 modified_time; <span class="comment">// 4 bytes</span></span><br><span class="line">     u32 create_time;   <span class="comment">// 4 bytes</span></span><br><span class="line">     u16 file_size;     <span class="comment">// 2 bytes</span></span><br><span class="line">     u16 start_block;</span><br><span class="line">     <span class="keyword">char</span> filename[<span class="number">20</span>];</span><br><span class="line"> &#125;;</span><br><span class="line"> <span class="meta">#<span class="meta-keyword">pragma</span> pack()</span></span><br></pre></td></tr></table></figure>
+<p>Declaration in the File System: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SuperBlock *superBlock_ptr;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FCB</span> *<span class="title">FCB_arr</span>;</span></span><br><span class="line">uchar *fileContent_ptr;</span><br></pre></td></tr></table></figure>
+<h2 id="APIs"><a href="#APIs" class="headerlink" title="APIs"></a>APIs</h2><h3 id="fs-open-fs-name-G-READ-G-WRITE"><a href="#fs-open-fs-name-G-READ-G-WRITE" class="headerlink" title="fs_open(fs, name, G_READ/G_WRITE)"></a><code>fs_open(fs, name, G_READ/G_WRITE)</code></h3><img src="/2022/03/25/CSC3150-Operating-System/fs_open.png" class="">
+<h3 id="fs-write-fs-input-size-fp"><a href="#fs-write-fs-input-size-fp" class="headerlink" title="fs_write(fs, input, size, fp)"></a><code>fs_write(fs, input, size, fp)</code></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (u32 i = start_addr; i &lt; start_addr + size; i++)</span><br><span class="line">&#123;</span><br><span class="line">    fs-&gt;fileContent_ptr[i] = input[i - start_addr];</span><br><span class="line">&#125; <span class="comment">// write to File Content from input buffer.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// update FCB_arr</span></span><br><span class="line">fs-&gt;FCB_arr[fp].file_size = size;</span><br><span class="line">fs-&gt;FCB_arr[fp].modified_time = gtime++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// update superBlock_ptr</span></span><br><span class="line"><span class="keyword">int</span> delta_block = block_needs - origin_blocks;</span><br><span class="line">fs-&gt;superBlock_ptr-&gt;free_block_count -= delta_block;</span><br><span class="line">fs-&gt;superBlock_ptr-&gt;free_block_start += delta_block;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="fs-read-fs-output-size-fp"><a href="#fs-read-fs-output-size-fp" class="headerlink" title="fs_read(fs, output, size, fp)"></a><code>fs_read(fs, output, size, fp)</code></h3><ul>
+<li><p>fp =&gt; get <code>start_block</code> and <code>file_size</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u16 start_block = fs-&gt;FCB_ar[fp].start_block;</span><br><span class="line">u16 file_size = fs-&gt;FCB_arr[fp].file_size;</span><br></pre></td></tr></table></figure></li>
+<li>Get physical start address and end address<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u32 start_addr = start_block * fs-&gt;STORAGE_BLOCK_SIZE;</span><br><span class="line">u32 end_addr = start_addr + size;</span><br></pre></td></tr></table></figure></li>
+<li>Read from File Content, and put result to <code>output</code> buffer.</li>
+</ul>
+<h3 id="fs-gsys-fs-RM-name"><a href="#fs-gsys-fs-RM-name" class="headerlink" title="fs_gsys(fs,RM, name)"></a><code>fs_gsys(fs,RM, name)</code></h3><img src="/2022/03/25/CSC3150-Operating-System/fs_remove.png" class="">
+<h3 id="fs-gsys-LS-D-LS-S"><a href="#fs-gsys-LS-D-LS-S" class="headerlink" title="fs_gsys (LS_D / LS_S)"></a><code>fs_gsys (LS_D / LS_S)</code></h3><ul>
+<li>Use Bubble Sort </li>
+<li>LS_D:LS_D list all files name in the directory and order by modified time of files, least modified, first print. </li>
+<li>LS_S: list all files name and size in the directory and order by descending size. If there are several files with the same size, then first create first print. </li>
+</ul>
+<p>————Bonus—————</p>
+<h3 id="fs-open-fs-name-G-READ-G-WRITE-1"><a href="#fs-open-fs-name-G-READ-G-WRITE-1" class="headerlink" title="fs_open(fs, name, G_READ/G_WRITE)"></a><code>fs_open(fs, name, G_READ/G_WRITE)</code></h3><ul>
+<li>update: when create a new file, modify the current directory’s <code>file_size</code> and <code>modified_time</code>;</li>
+<li>update: when remove a file, modify the current directory’s <code>file_size</code>;</li>
+</ul>
+<h3 id="fs-gsys-fs-MKDIR-name"><a href="#fs-gsys-fs-MKDIR-name" class="headerlink" title="fs_gsys(fs, MKDIR, name)"></a><code>fs_gsys(fs, MKDIR, name)</code></h3><ul>
+<li>Similar with create an empty file in <code>fs_open</code></li>
+</ul>
+<h3 id="fs-gsys-fs-CD-name"><a href="#fs-gsys-fs-CD-name" class="headerlink" title="fs_gsys(fs,CD,name)"></a><code>fs_gsys(fs,CD,name)</code></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fp = linear search to get FCB index by name;</span><br><span class="line">fs-&gt;curr_dir = fp; <span class="comment">// update the current directory;</span></span><br></pre></td></tr></table></figure>
+<h3 id="fs-gsys-fs-CD-P"><a href="#fs-gsys-fs-CD-P" class="headerlink" title="fs_gsys(fs,CD_P)"></a><code>fs_gsys(fs,CD_P)</code></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// change to the parent directory of the current directory;</span></span><br><span class="line">fs-&gt;curr_dir = fs-&gt;FCB_arr[fs-&gt;curr_dir].parent;</span><br></pre></td></tr></table></figure>
+<h3 id="fs-gsys-fs-RM-RF-name"><a href="#fs-gsys-fs-RM-RF-name" class="headerlink" title="fs_gsys(fs,RM_RF,name)"></a><code>fs_gsys(fs,RM_RF,name)</code></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// recursive_remove_dir(fs, fp);</span></span><br><span class="line"><span class="keyword">if</span> (directory fp is empty) remove the empty directory fp;</span><br><span class="line"><span class="keyword">for</span> (i in range of total files number) &#123;</span><br><span class="line">    <span class="keyword">if</span> file i is a file &#123;</span><br><span class="line">        remove file i;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (file i is a directory) &#123;</span><br><span class="line">        <span class="built_in">recursive_remove_dir</span>(fs, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">remove empty directory fp;</span><br></pre></td></tr></table></figure>
+<h3 id="fs-gsys-fs-PWD"><a href="#fs-gsys-fs-PWD" class="headerlink" title="fs_gsys(fs, PWD)"></a><code>fs_gsys(fs, PWD)</code></h3><ul>
+<li>Back track the parent directory until reach to the root directory. Print out the current path.</li>
+</ul>
+<h3 id="fs-gsy-fs-LS-D-LS-S"><a href="#fs-gsy-fs-LS-D-LS-S" class="headerlink" title="fs_gsy(fs, LS_D\LS_S)"></a><code>fs_gsy(fs, LS_D\LS_S)</code></h3><h2 id="update-list-the-files-as-well-as-directories-For-a-file-list-it-name-with-size-only-For-a-directory-add-an-symbol-‘d’-at-the-end"><a href="#update-list-the-files-as-well-as-directories-For-a-file-list-it-name-with-size-only-For-a-directory-add-an-symbol-‘d’-at-the-end" class="headerlink" title="   * update: list the files as well as directories. For a file, list it name (with size) only. For a directory, add an symbol ‘d’ at the end."></a>   * update: list the files as well as directories. For a file, list it name (with size) only. For a directory, add an symbol ‘d’ at the end.</h2><h1 id="Project-5-Control-Device-in-Kernel-Module"><a href="#Project-5-Control-Device-in-Kernel-Module" class="headerlink" title="Project 5: Control Device in Kernel Module"></a>Project 5: Control Device in Kernel Module</h1><img src="/2022/03/25/CSC3150-Operating-System/dma.png" class=""></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Jiaqi Shao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://luuvy757.github.io/2022/03/25/CSC3150-Operating-System/">https://luuvy757.github.io/2022/03/25/CSC3150-Operating-System/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/covers/2022210231764265f3565f96825f159733503321.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/22/CSC3050-Computer-Architecture/"><img class="next-cover" src="/img/covers/2022210231764265f3565f96825.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">CSC3050 Computer Architecture</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiaqi Shao</div><div class="author-info__description">description</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/luuvy757"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-1-User-Thread-and-Kernel-Thread"><span class="toc-number">1.</span> <span class="toc-text">Project 1: User Thread and Kernel Thread</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-number">1.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Task-1-user-mode"><span class="toc-number">1.2.</span> <span class="toc-text">Task 1: user mode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#In-user-mode-fork-a-child-process-to-execute-the-test-program"><span class="toc-number">1.2.1.</span> <span class="toc-text">In user mode, fork a child process to execute the test program.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Detect-exception-cases-generated-by-test-programs"><span class="toc-number">1.2.2.</span> <span class="toc-text">Detect exception cases generated by test programs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Task-2-kernel-mode"><span class="toc-number">1.3.</span> <span class="toc-text">Task 2: kernel mode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions"><span class="toc-number">1.3.1.</span> <span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-kernel-module"><span class="toc-number">1.3.2.</span> <span class="toc-text">Create kernel module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Insert-kernel-module-and-remove-kernel-module"><span class="toc-number">1.3.3.</span> <span class="toc-text">Insert kernel module and remove kernel module</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-2-Frog-Game-using-pthread"><span class="toc-number">2.</span> <span class="toc-text">Project 2: Frog Game (using pthread)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutex-Lock"><span class="toc-number">2.1.</span> <span class="toc-text">Mutex Lock</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-3-Virtual-Memory-Simulation"><span class="toc-number">3.</span> <span class="toc-text">Project 3: Virtual Memory Simulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-1"><span class="toc-number">3.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transform-Virtual-address-to-Physical-address"><span class="toc-number">3.2.</span> <span class="toc-text">Transform Virtual address to Physical address</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Page-Fault-Handling"><span class="toc-number">3.3.</span> <span class="toc-text">Page Fault Handling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Invert-Page-Table"><span class="toc-number">3.4.</span> <span class="toc-text">Invert Page Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Page-Replacement-LRU"><span class="toc-number">3.5.</span> <span class="toc-text">Page Replacement (LRU)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-4-File-System-Simulation"><span class="toc-number">4.</span> <span class="toc-text">Project 4: File System Simulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-2"><span class="toc-number">4.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implementation"><span class="toc-number">4.2.</span> <span class="toc-text">Implementation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-structure"><span class="toc-number">4.2.1.</span> <span class="toc-text">Data structure</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APIs"><span class="toc-number">4.3.</span> <span class="toc-text">APIs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-open-fs-name-G-READ-G-WRITE"><span class="toc-number">4.3.1.</span> <span class="toc-text">fs_open(fs, name, G_READ&#x2F;G_WRITE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-write-fs-input-size-fp"><span class="toc-number">4.3.2.</span> <span class="toc-text">fs_write(fs, input, size, fp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-read-fs-output-size-fp"><span class="toc-number">4.3.3.</span> <span class="toc-text">fs_read(fs, output, size, fp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsys-fs-RM-name"><span class="toc-number">4.3.4.</span> <span class="toc-text">fs_gsys(fs,RM, name)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsys-LS-D-LS-S"><span class="toc-number">4.3.5.</span> <span class="toc-text">fs_gsys (LS_D &#x2F; LS_S)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-open-fs-name-G-READ-G-WRITE-1"><span class="toc-number">4.3.6.</span> <span class="toc-text">fs_open(fs, name, G_READ&#x2F;G_WRITE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsys-fs-MKDIR-name"><span class="toc-number">4.3.7.</span> <span class="toc-text">fs_gsys(fs, MKDIR, name)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsys-fs-CD-name"><span class="toc-number">4.3.8.</span> <span class="toc-text">fs_gsys(fs,CD,name)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsys-fs-CD-P"><span class="toc-number">4.3.9.</span> <span class="toc-text">fs_gsys(fs,CD_P)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsys-fs-RM-RF-name"><span class="toc-number">4.3.10.</span> <span class="toc-text">fs_gsys(fs,RM_RF,name)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsys-fs-PWD"><span class="toc-number">4.3.11.</span> <span class="toc-text">fs_gsys(fs, PWD)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fs-gsy-fs-LS-D-LS-S"><span class="toc-number">4.3.12.</span> <span class="toc-text">fs_gsy(fs, LS_D\LS_S)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-list-the-files-as-well-as-directories-For-a-file-list-it-name-with-size-only-For-a-directory-add-an-symbol-%E2%80%98d%E2%80%99-at-the-end"><span class="toc-number">4.4.</span> <span class="toc-text">   * update: list the files as well as directories. For a file, list it name (with size) only. For a directory, add an symbol ‘d’ at the end.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-5-Control-Device-in-Kernel-Module"><span class="toc-number">5.</span> <span class="toc-text">Project 5: Control Device in Kernel Module</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/CSC3150-Operating-System/" title="CSC3150 Operating System"><img src="/img/covers/2022210231764265f3565f96825f159733503321.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSC3150 Operating System"/></a><div class="content"><a class="title" href="/2022/03/25/CSC3150-Operating-System/" title="CSC3150 Operating System">CSC3150 Operating System</a><time datetime="2022-03-24T16:24:13.000Z" title="Created 2022-03-25 00:24:13">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/22/CSC3050-Computer-Architecture/" title="CSC3050 Computer Architecture"><img src="/img/covers/2022210231764265f3565f96825.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSC3050 Computer Architecture"/></a><div class="content"><a class="title" href="/2022/03/22/CSC3050-Computer-Architecture/" title="CSC3050 Computer Architecture">CSC3050 Computer Architecture</a><time datetime="2022-03-22T05:59:55.000Z" title="Created 2022-03-22 13:59:55">2022-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/09/FL-Algorithms/" title="FL Algorithms"><img src="/img/covers/202203102320.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="FL Algorithms"/></a><div class="content"><a class="title" href="/2022/03/09/FL-Algorithms/" title="FL Algorithms">FL Algorithms</a><time datetime="2022-03-09T14:03:03.000Z" title="Created 2022-03-09 22:03:03">2022-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device"><img src="/img/flower.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="FL using Flower on device"/></a><div class="content"><a class="title" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device">FL using Flower on device</a><time datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Jiaqi Shao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"right","hOffset":30,"vOffset":-20},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
