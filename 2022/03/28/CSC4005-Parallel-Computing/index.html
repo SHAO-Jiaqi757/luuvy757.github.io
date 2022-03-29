@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CSC4005 Parallel Computing | Jiaqi's Blog</title><meta name="keywords" content="course"><meta name="author" content="Jiaqi Shao"><meta name="copyright" content="Jiaqi Shao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Project 1: Odd Even SortOverview sequential odd even sort $O(n^{2})$       Method – MPIScatter Numbers (MPI_Scatterv(…)) receive_count[i] 123456avg &#x3D; floor(input_size &#x2F; process_number)rem &#x3D; input size">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSC4005 Parallel Computing">
+<meta property="og:url" content="https://luuvy757.github.io/2022/03/28/CSC4005-Parallel-Computing/index.html">
+<meta property="og:site_name" content="Jiaqi&#39;s Blog">
+<meta property="og:description" content="Project 1: Odd Even SortOverview sequential odd even sort $O(n^{2})$       Method – MPIScatter Numbers (MPI_Scatterv(…)) receive_count[i] 123456avg &#x3D; floor(input_size &#x2F; process_number)rem &#x3D; input size">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luuvy757.github.io/img/covers/20220310232325.png">
+<meta property="article:published_time" content="2022-03-28T09:13:55.000Z">
+<meta property="article:modified_time" content="2022-03-29T02:02:13.035Z">
+<meta property="article:author" content="Jiaqi Shao">
+<meta property="article:tag" content="course">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luuvy757.github.io/img/covers/20220310232325.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://luuvy757.github.io/2022/03/28/CSC4005-Parallel-Computing/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSC4005 Parallel Computing',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-29 10:02:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Jiaqi's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/covers/20220310232325.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jiaqi's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CSC4005 Parallel Computing</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-28T09:13:55.000Z" title="Created 2022-03-28 17:13:55">2022-03-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-29T02:02:13.035Z" title="Updated 2022-03-29 10:02:13">2022-03-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CSC4005 Parallel Computing"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Project-1-Odd-Even-Sort"><a href="#Project-1-Odd-Even-Sort" class="headerlink" title="Project 1: Odd Even Sort"></a>Project 1: Odd Even Sort</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
+<p>sequential odd even sort $O(n^{2})$   </p>
+</blockquote>
+<img src="/2022/03/28/CSC4005-Parallel-Computing/odd_even.jpg" class="">
+<img src="/2022/03/28/CSC4005-Parallel-Computing/flow.jpg" class="">
+<h2 id="Method-–-MPI"><a href="#Method-–-MPI" class="headerlink" title="Method – MPI"></a>Method – MPI</h2><h3 id="Scatter-Numbers-MPI-Scatterv-…"><a href="#Scatter-Numbers-MPI-Scatterv-…" class="headerlink" title="Scatter Numbers (MPI_Scatterv(…))"></a>Scatter Numbers (MPI_Scatterv(…))</h3><ul>
+<li>receive_count[i] <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">avg = floor(input_size / process_number)</span><br><span class="line">rem = input size % process number</span><br><span class="line">if rank i &lt; rem: </span><br><span class="line">    receive_count[i] = avg + 1; </span><br><span class="line">else:</span><br><span class="line">    receive_count[i] = avg;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Communication-between-process-MPI-Sendrecv-…"><a href="#Communication-between-process-MPI-Sendrecv-…" class="headerlink" title="Communication between process (MPI_Sendrecv(…))"></a>Communication between process (MPI_Sendrecv(…))</h3><ul>
+<li>find_partner(index, phase)</li>
+<li>boundary check<ul>
+<li>The current process receives nothing.</li>
+<li>Partner is NOT in received numbers =&gt; need communication.</li>
+<li>Partner is NOT in the range of the whole array, DO NOT need any comparison and exchange.</li>
+</ul>
+</li>
+<li>communicate with neighbor process<img src="/2022/03/28/CSC4005-Parallel-Computing/communicate_neighbor.jpg" class="">
+</li>
+</ul>
+<h1 id="Project-2-Mandelbrot-Set"><a href="#Project-2-Mandelbrot-Set" class="headerlink" title="Project 2: Mandelbrot Set"></a>Project 2: Mandelbrot Set</h1><h1 id="Project-3-N-Body-Simulation"><a href="#Project-3-N-Body-Simulation" class="headerlink" title="Project 3: N Body Simulation"></a>Project 3: N Body Simulation</h1><h2 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h2><p>An N-body simulation is a simulation of the evolution of N bodies in a system<br>based on the Newton’s Law (gravitational force). Each body continuously<br>interacts with every other body, and with collision. It approximates an astrophysical<br>simulation in which each body represents a galaxy or an individual<br>star. In this project, the 2D dimensional N-body simulation uses the all-pairs<br>approach that is a brute-force technique with $O(n^2)$computational complexity.</p>
+<p>Sequential Algorithm:</p>
+<ol>
+<li>Step1: Calculate force interaction between all-pair bodies.<br>For a body i, update its acceleration as it interact with other bodies.<br>Besides, update its velocity and position as it collides with other bodies.</li>
+<li>Step2: Simulate movement within elapse.<br>In this step, loop for every body to update its velocity and position.<br>$v_n = v_{n-1} + at, x_n = x_{n-1} + vt$</li>
+</ol>
+<h2 id="Method-–-MPI-1"><a href="#Method-–-MPI-1" class="headerlink" title="Method – MPI"></a>Method – MPI</h2><img src="/2022/03/28/CSC4005-Parallel-Computing/Nbody_mpi.jpg" class="">  
+<p>(a) Broadcast <code>BodyPool</code><br>  The master (rank 0) broadcast all vectors (ay, ax, x, y, vx, vy) to<br>  other processes, and other processes receive the BodyPool.<br>(b) Parallel Computation<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for (int i = start_body; i &lt; end_body; i++)&#123;</span><br><span class="line">  for (int j = 0; j &lt; nbody; j++)&#123;</span><br><span class="line">    update ax, ay, vx, vy of body i</span><br><span class="line">    handle body collision, update x, y of body i</span><br><span class="line">  &#125;</span><br><span class="line">  update x,y of body i within elapse</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Method-–-OpenMP-Pthread"><a href="#Method-–-OpenMP-Pthread" class="headerlink" title="Method – OpenMP/Pthread"></a>Method – OpenMP/Pthread</h2><p>OpenMP is a shared memory approach which is similar to the Pthread<br>approach. The common problem of shared memory methods is the data<br>race. The data race occurs in the Step 1.<br>When the two bodies i and j <strong>collide</strong> with each other, the algorithm try<br>to read their velocity while update the body i’s velocity. Date race<br>happens when reading and writing velocity of the same body.</p>
+<h2 id="Method-–-MPI-OpenMP"><a href="#Method-–-MPI-OpenMP" class="headerlink" title="Method – MPI+OpenMP"></a>Method – MPI+OpenMP</h2><p>Based on the implementation of MPI, the computational part is modified to OpenMP parallel computation. What’s more, the Step 1 and<br>Step 2 are separated as the data race may occur in OpenMP parallel<br>computation. The computational part of the MPI+OpenMP is largely<br>same as that of the OpenMP.</p>
+<h2 id="Method-–-CUDA"><a href="#Method-–-CUDA" class="headerlink" title="Method – CUDA"></a>Method – CUDA</h2><p>In CUDA programming, the Uni ed Memory is used to eliminate the<br>need for explicit data movement via the <code>cudaMemcpy*()</code> routines without<br>the performance penalty incurred by placing all data into zero-copy<br>memory</p>
+<h1 id="Project-4-Heat-Simulation"><a href="#Project-4-Heat-Simulation" class="headerlink" title="Project 4: Heat Simulation"></a>Project 4: Heat Simulation</h1><h2 id="Overview-2"><a href="#Overview-2" class="headerlink" title="Overview"></a>Overview</h2><img src="/2022/03/28/CSC4005-Parallel-Computing/heat_simulation.jpg" class="">
+<img src="/2022/03/28/CSC4005-Parallel-Computing/heat_simulation_1.jpg" class="">
+<h2 id="Method-–-MPI-2"><a href="#Method-–-MPI-2" class="headerlink" title="Method – MPI"></a>Method – MPI</h2><img src="/2022/03/28/CSC4005-Parallel-Computing/heat_mpi.jpg" class="">
+<img src="/2022/03/28/CSC4005-Parallel-Computing/ghost.jpg" class="">  
+<p>(a) Each process compute the workload (begin row, end row) based on the their rankID.<br>(b) Each process create a local grid with ghost points.<br>(c) Each process send result back to rank 0, and rank 0 gather the result to make decision finish or not.</p>
+<h2 id="Method-–-OpenMP-Pthread-CUDA"><a href="#Method-–-OpenMP-Pthread-CUDA" class="headerlink" title="Method – OpenMP/Pthread/CUDA"></a>Method – OpenMP/Pthread/CUDA</h2><img src="/2022/03/28/CSC4005-Parallel-Computing/heat_thread.jpg" class="">  
+<p>The <strong>Pthread</strong> method is designed for shared memory. Each thread works<br>on certain rows (based on <code>threadId</code>) of grid and update the result on buffer grid. After<br>each iteration, the threads are <strong>joined</strong> and the grid will be switched.<br>Termination occurs when iteration reaches the given max iteration.<br><strong>OpenMP</strong> is a shared memory approach which is similar to the Pthread<br>approach. The different is the OpenMP is implicit scheduling.<br><strong>NO DATA RACE</strong> Need synchronize after each round, and then switch the buffer.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><ul>
+<li>The performance of Pthread is better than OpenMP because the self-scheduling is not free.</li>
+<li>OpenMP and Pthread is limited with the physical thread number per node, when the thread number exceeds 32, the speedup drops down.</li>
+<li>For distribute memory. The communication overhead occurs when problem size is small.</li>
+<li>In general, shared-memory approaches are better than distributed-memory approach, but the MPI method can used for multi-computer.</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Jiaqi Shao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://luuvy757.github.io/2022/03/28/CSC4005-Parallel-Computing/">https://luuvy757.github.io/2022/03/28/CSC4005-Parallel-Computing/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/course/">course</a></div><div class="post_share"><div class="social-share" data-image="/img/covers/20220310232325.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/25/CSC3150-Operating-System/"><img class="next-cover" src="/img/covers/2022210231764265f3565f96825f159733503321.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">CSC3150 Operating System</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jiaqi Shao</div><div class="author-info__description">description</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/luuvy757"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-1-Odd-Even-Sort"><span class="toc-number">1.</span> <span class="toc-text">Project 1: Odd Even Sort</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-number">1.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-%E2%80%93-MPI"><span class="toc-number">1.2.</span> <span class="toc-text">Method – MPI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Scatter-Numbers-MPI-Scatterv-%E2%80%A6"><span class="toc-number">1.2.1.</span> <span class="toc-text">Scatter Numbers (MPI_Scatterv(…))</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Communication-between-process-MPI-Sendrecv-%E2%80%A6"><span class="toc-number">1.2.2.</span> <span class="toc-text">Communication between process (MPI_Sendrecv(…))</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-2-Mandelbrot-Set"><span class="toc-number">2.</span> <span class="toc-text">Project 2: Mandelbrot Set</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-3-N-Body-Simulation"><span class="toc-number">3.</span> <span class="toc-text">Project 3: N Body Simulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-1"><span class="toc-number">3.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-%E2%80%93-MPI-1"><span class="toc-number">3.2.</span> <span class="toc-text">Method – MPI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-%E2%80%93-OpenMP-Pthread"><span class="toc-number">3.3.</span> <span class="toc-text">Method – OpenMP&#x2F;Pthread</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-%E2%80%93-MPI-OpenMP"><span class="toc-number">3.4.</span> <span class="toc-text">Method – MPI+OpenMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-%E2%80%93-CUDA"><span class="toc-number">3.5.</span> <span class="toc-text">Method – CUDA</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-4-Heat-Simulation"><span class="toc-number">4.</span> <span class="toc-text">Project 4: Heat Simulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview-2"><span class="toc-number">4.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-%E2%80%93-MPI-2"><span class="toc-number">4.2.</span> <span class="toc-text">Method – MPI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-%E2%80%93-OpenMP-Pthread-CUDA"><span class="toc-number">4.3.</span> <span class="toc-text">Method – OpenMP&#x2F;Pthread&#x2F;CUDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.4.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/28/CSC4005-Parallel-Computing/" title="CSC4005 Parallel Computing"><img src="/img/covers/20220310232325.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSC4005 Parallel Computing"/></a><div class="content"><a class="title" href="/2022/03/28/CSC4005-Parallel-Computing/" title="CSC4005 Parallel Computing">CSC4005 Parallel Computing</a><time datetime="2022-03-28T09:13:55.000Z" title="Created 2022-03-28 17:13:55">2022-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/CSC3150-Operating-System/" title="CSC3150 Operating System"><img src="/img/covers/2022210231764265f3565f96825f159733503321.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSC3150 Operating System"/></a><div class="content"><a class="title" href="/2022/03/25/CSC3150-Operating-System/" title="CSC3150 Operating System">CSC3150 Operating System</a><time datetime="2022-03-24T16:24:13.000Z" title="Created 2022-03-25 00:24:13">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/22/CSC3050-Computer-Architecture/" title="CSC3050 Computer Architecture"><img src="/img/covers/2022210231764265f3565f96825.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSC3050 Computer Architecture"/></a><div class="content"><a class="title" href="/2022/03/22/CSC3050-Computer-Architecture/" title="CSC3050 Computer Architecture">CSC3050 Computer Architecture</a><time datetime="2022-03-22T05:59:55.000Z" title="Created 2022-03-22 13:59:55">2022-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/09/FL-Algorithms/" title="FL Algorithms"><img src="/img/covers/202203102320.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="FL Algorithms"/></a><div class="content"><a class="title" href="/2022/03/09/FL-Algorithms/" title="FL Algorithms">FL Algorithms</a><time datetime="2022-03-09T14:03:03.000Z" title="Created 2022-03-09 22:03:03">2022-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device"><img src="/img/flower.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="FL using Flower on device"/></a><div class="content"><a class="title" href="/2022/01/21/FL-using-Flower-on-device/" title="FL using Flower on device">FL using Flower on device</a><time datetime="2022-01-21T04:59:06.000Z" title="Created 2022-01-21 12:59:06">2022-01-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Jiaqi Shao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"right","hOffset":30,"vOffset":-20},"mobile":{"show":true},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
