@@ -6,7 +6,7 @@
   <link href="https://luuvy757.github.io/atom.xml" rel="self"/>
   
   <link href="https://luuvy757.github.io/"/>
-  <updated>2022-07-08T13:30:46.815Z</updated>
+  <updated>2022-07-08T14:54:13.469Z</updated>
   <id>https://luuvy757.github.io/</id>
   
   <author>
@@ -21,23 +21,12 @@
     <link href="https://luuvy757.github.io/2022/07/08/07-08-2022/"/>
     <id>https://luuvy757.github.io/2022/07/08/07-08-2022/</id>
     <published>2022-07-08T13:27:29.000Z</published>
-    <updated>2022-07-08T13:30:46.815Z</updated>
+    <updated>2022-07-08T14:54:13.469Z</updated>
     
-    <content type="html"><![CDATA[<div class="row">    <embed src="07_10_2022.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Passwords Error! Enter Again!" data-whm="The content cannot be verified.">  <script id="hbeData" type="hbeData" data-hmacdigest="748efb861ea8fa1aa14a62b02fe0db62f77cc3a32ece1426de6adfa0e6116500">ffc9b7eac7944f471295bf2441c26e5559745149899d04c902f61bb5e7268c024fb4e3e391f6364f593af11413c3509cb72c2d41a55da77be27208eaa0622ececf98df2c2c74476130406f29b0247b1afd47ad0f34bbc59f54db0a3a27fa23ef6d3acf68ec0f2b1c629a5d03a1818bbe308d3dd850cfeaa2cb42bd44661890dc7c6ba5685201536ecb1d9629d38577d5</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Private Page, Please enter Passwords</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
     
     
-      
-      
-    <summary type="html">
-
-	&lt;div class=&quot;row&quot;&gt;
-    &lt;embed src=&quot;07_10_2022.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot; type=&quot;application/pdf&quot;&gt;
-	&lt;/div&gt;
-
-
-
-</summary>
-      
+    <summary type="html">Private Page, Please enter Passwords</summary>
     
     
     
@@ -45,6 +34,8 @@
     
     
     <category term="academic presentation" scheme="https://luuvy757.github.io/tags/academic-presentation/"/>
+    
+    <category term="private" scheme="https://luuvy757.github.io/tags/private/"/>
     
   </entry>
   
@@ -53,22 +44,12 @@
     <link href="https://luuvy757.github.io/2022/07/08/06-23-2022/"/>
     <id>https://luuvy757.github.io/2022/07/08/06-23-2022/</id>
     <published>2022-07-08T13:15:54.000Z</published>
-    <updated>2022-07-08T13:25:06.004Z</updated>
+    <updated>2022-07-08T14:53:47.992Z</updated>
     
-    <content type="html"><![CDATA[<div class="row">    <embed src="research_work.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Passwords Error! Enter Again!" data-whm="The content cannot be verified.">  <script id="hbeData" type="hbeData" data-hmacdigest="63ca24e385e7639ea540290966a59b5276197385aad943226e86f90eb23934be">ffc9b7eac7944f471295bf2441c26e5559745149899d04c902f61bb5e7268c024fb4e3e391f6364f593af11413c3509cef3c93e75368518d6dba47f14f9cc7fb02bc2907e5965607956a8fdaa340a57f4f0286fb4d0e7b754247931130b84f0a353def0b22026d9edf80b9da63b3c3fc822e448ef67b36b163e864cf37bfe76ffb7854ec2054026aafc5e020f3b63c23</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Private Page, Please enter Passwords</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
     
     
-      
-      
-    <summary type="html">
-
-	&lt;div class=&quot;row&quot;&gt;
-    &lt;embed src=&quot;research_work.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot; type=&quot;application/pdf&quot;&gt;
-	&lt;/div&gt;
-
-
-</summary>
-      
+    <summary type="html">Private Page, Please enter Passwords</summary>
     
     
     
@@ -76,6 +57,8 @@
     
     
     <category term="academic presentation" scheme="https://luuvy757.github.io/tags/academic-presentation/"/>
+    
+    <category term="private" scheme="https://luuvy757.github.io/tags/private/"/>
     
   </entry>
   
