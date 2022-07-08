@@ -6,7 +6,7 @@
   <link href="https://luuvy757.github.io/atom.xml" rel="self"/>
   
   <link href="https://luuvy757.github.io/"/>
-  <updated>2022-03-29T02:02:13.035Z</updated>
+  <updated>2022-07-08T13:30:46.815Z</updated>
   <id>https://luuvy757.github.io/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>07.08.2022</title>
+    <link href="https://luuvy757.github.io/2022/07/08/07-08-2022/"/>
+    <id>https://luuvy757.github.io/2022/07/08/07-08-2022/</id>
+    <published>2022-07-08T13:27:29.000Z</published>
+    <updated>2022-07-08T13:30:46.815Z</updated>
+    
+    <content type="html"><![CDATA[<div class="row">    <embed src="07_10_2022.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    
+    
+      
+      
+    <summary type="html">
+
+	&lt;div class=&quot;row&quot;&gt;
+    &lt;embed src=&quot;07_10_2022.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot; type=&quot;application/pdf&quot;&gt;
+	&lt;/div&gt;
+
+
+
+</summary>
+      
+    
+    
+    
+    <category term="FL" scheme="https://luuvy757.github.io/categories/FL/"/>
+    
+    
+    <category term="academic presentation" scheme="https://luuvy757.github.io/tags/academic-presentation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>06.23.2022</title>
+    <link href="https://luuvy757.github.io/2022/07/08/06-23-2022/"/>
+    <id>https://luuvy757.github.io/2022/07/08/06-23-2022/</id>
+    <published>2022-07-08T13:15:54.000Z</published>
+    <updated>2022-07-08T13:25:06.004Z</updated>
+    
+    <content type="html"><![CDATA[<div class="row">    <embed src="research_work.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    
+    
+      
+      
+    <summary type="html">
+
+	&lt;div class=&quot;row&quot;&gt;
+    &lt;embed src=&quot;research_work.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot; type=&quot;application/pdf&quot;&gt;
+	&lt;/div&gt;
+
+
+</summary>
+      
+    
+    
+    
+    <category term="FL" scheme="https://luuvy757.github.io/categories/FL/"/>
+    
+    
+    <category term="academic presentation" scheme="https://luuvy757.github.io/tags/academic-presentation/"/>
+    
+  </entry>
   
   <entry>
     <title>CSC4005 Parallel Computing</title>
